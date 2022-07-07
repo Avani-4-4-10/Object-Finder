@@ -1,0 +1,26 @@
+.heading{
+    margin-top: 0px;
+    width: 100%;
+    font-size: 24px;
+}
+.copyright_footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: lightgoldenrodyellow;
+    color: red;
+    line-height: 2.5;
+}
+canvas{
+    border: 2px solid red;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px white ;
+    margin-top: 50px;
+}
+span{
+    font-size: 12px;
+    color: beige;
+}
+label{
+    color: azure;
+}
