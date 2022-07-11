@@ -11,7 +11,7 @@ function setup(){
 function start(){
     objectDetector = ml5.objectDetector("cocossd" , modelLoaded)
     document.getElementById("status").innerHTML = "Status : detecting object"
-    object_name = document.getElementById("name")
+    object_name = document.getElementById("name").value
 }
 function modelLoaded(){
     console.log("Model has been initialized !")
@@ -22,6 +22,27 @@ function draw(){
 
     if(model_status != ""){
         objectDetector.detect(video , gotResult)
+        for(i = 0 ; i < objects.length ; i++){
+            document.getElementById("status").innerHTML = "Status : Objects Detected!"
+            fill("blue")
+            percent = Math.floor(objects[i].confidence * 100)
+            text(objects[i].label + " " + percent + "%" , objects[i].x+15 , objects[i].y+15)
+            noFill()
+            stroke("purple")
+            rect(objects[i].x , objects[i].y , objects[i].width ,objects[i].height)
+
+            if(object_name == objects[i].label){
+                video.stop()
+                objectDetector.detect(gotResult)
+                document.getElementById("result").innerHTML= object_name + " Found"
+                synth = window.speechSynthesis()
+                utterThis = new SpeechSynthesisUtterance(object_name + " Found")
+                synth.speak(utterThis)
+            }
+            else{
+                document.getElementById("result").innerHTML= object_name + " Not Found!"
+            }
+        }
     }
 }
 function gotResult(error , results){
