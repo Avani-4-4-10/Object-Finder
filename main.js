@@ -35,7 +35,7 @@ function draw(){
                 video.stop()
                 objectDetector.detect(gotResult)
                 document.getElementById("result").innerHTML= object_name + " Found"
-                synth = window.speechSynthesis()
+                synth = window.speechSynthesis
                 utterThis = new SpeechSynthesisUtterance(object_name + " Found")
                 synth.speak(utterThis)
             }
